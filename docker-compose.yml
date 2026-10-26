@@ -1,0 +1,69 @@
+name: tiaki
+
+services:
+
+  postgres:
+    image: postgres:17-alpine
+    container_name: tiaki-postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+    ports:
+      - "${POSTGRES_PORT}:5432"
+
+    volumes:
+      - tiaki_postgres_data:/var/lib/postgresql/data
+
+    networks:
+      - tiaki-network
+
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  redis:
+    image: redis:7-alpine
+    container_name: tiaki-redis
+    restart: unless-stopped
+
+    ports:
+      - "${REDIS_PORT}:6379"
+
+    volumes:
+      - tiaki_redis_data:/data
+
+    networks:
+      - tiaki-network
+
+    healthcheck:
+      test:
+        - CMD
+        - redis-cli
+        - ping
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+networks:
+
+  tiaki-network:
+    name: tiaki-network
+    driver: bridge
+
+volumes:
+
+  tiaki_postgres_data:
+    name: tiaki_postgres_data
+
+  tiaki_redis_data:
+    name: tiaki_redis_data

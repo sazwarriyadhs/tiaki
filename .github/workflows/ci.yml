@@ -1,0 +1,28 @@
+name: TIAKI CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+
+jobs:
+
+  api:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+
+      - name: Test API
+        working-directory: services/api
+        run: go test ./...
+
+      - name: Build API
+        working-directory: services/api
+        run: go build ./cmd/server

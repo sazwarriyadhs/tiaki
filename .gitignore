@@ -1,0 +1,91 @@
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Windows
+*.lnk
+
+# Go
+bin/
+*.exe
+*.test
+*.out
+
+# Node
+node_modules/
+.next/
+out/
+dist/
+coverage/
+
+# Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+build/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Data
+data/imports/*
+data/exports/*
+data/datasets/*
+!data/imports/.gitkeep
+!data/exports/.gitkeep
+!data/datasets/.gitkeep
+
+# Docker
+docker-volumes/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Secrets
+*.pem
+*.key
+*.crt
+secrets/
+
+# Local backups / real data
+.audit-realdata-backup-*/
+*.sql
+
+.audit-realdata-backup-*/
+# Environment secrets
+# Local agent and refactoring state
+.refact/
+# Temporary files and backups
+*~
+*.bak
+*.bak_*
+*.backup*
+*.before-cleanup*
+*.broken-recovery
+*.recovery
+*.tsbuildinfo
+# Build outputs and dependencies
