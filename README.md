@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/tiaki_logo.png" alt="TIAKI — Meat Industry Intelligence" width="280" />
+</p>
+
 # TIAKI
 
 ## Meat Industry Intelligence
